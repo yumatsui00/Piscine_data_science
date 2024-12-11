@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  postgres_db:
+    image: postgres:latest
+    container_name: ex03-postgres
+    environment:
+      POSTGRES_USER: yumatsui
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: piscineds
+    volumes:
+      - ./volume:/var/lib/postgresql/data
+      - ./subject/customer:/docker-entrypoint-initdb.d
+    networks:
+      - beaver-network
+
+  dbeaver:
+    image: dbeaver/cloudbeaver:latest
+    container_name: ex03-cloudbeaver
+    ports:
+      - "8080:8978"
+    environment:
+      CB_ADMIN_NAME: cbadmin
+      CB_ADMIN_PASSWORD: CBadmin123
+      CB_PUBLIC_URL: http://localhost:8080
+    volumes:
+      - ./cb_volume:/opt/cloudbeaver/workspace
+    networks:
+      - beaver-network
+
+networks:
+  beaver-network:
+    driver: bridge

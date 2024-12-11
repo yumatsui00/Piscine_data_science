@@ -1,0 +1,32 @@
+docker-comppose up
+-d : デタッチ　バックグラウンドで起動
+--build : イメージを再ビルド
+docker compose logs -f : リアルタイムでログを表示
+
+docker-compose down
+
+docker ps
+
+docker images
+docker rmi <name>
+docker image prune
+
+
+docker volume ls
+docker volume inspect <name>
+docker volume rm <name>
+
+docker system prune
+
+docker 内のプロンプトに入る方法
+docker exec <container> command : commandを実行
+docker exec -it <container name> bash　　-i は標準入力を保持、-tは疑似ターミナルを割り当て
+
+
+
+psql -U your_login -d piscineds -h localhost -W
+psql: postgresを起動
+-U your_login: -Uでデータベースユーザを指定。
+-d piscineds: 接続するDB名を指定
+-h localhost: 接続先のホスト（サーバー）を指定
+-W : passwordを入力
